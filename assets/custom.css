@@ -1,0 +1,11 @@
+/*
+	Custom OUT styling
+*/
+.direction.out, 
+.direction.out * {
+    color: red;
+}
+
+tr.unpublished * {
+    color: #ccc;
+}

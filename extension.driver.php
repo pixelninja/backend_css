@@ -1,16 +1,15 @@
 <?php
 
-	class extension_backend_javascriptr extends Extension {
+	class extension_backend_css extends Extension {
 
 		public function about(){
 			return array(
-				'name' => 'Backend JavaScriptr',
+				'name' => 'Backend CSS',
 				'version' => '0.1',
-				'release-date' => '2011-04-18',
+				'release-date' => '2012-06-11',
 				'author' => array(
-					'name' => 'João Barbosa',
-					'website' => 'http://www.joaootavio.com.br',
-					'email' => 'falecom@joaootavio.com.br'
+					'name' => 'Phill Gray',
+					'email' => 'pixel.ninjad@gmail.com'
 				)
 			);
 		}
@@ -37,45 +36,50 @@
 
 		public function appendMyCode($context){
 			
-			// Add the custom code to the head of the page
-			Administration::instance()->Page->addScriptToHead(URL . '/extensions/backend_javascriptr/assets/custom.js', 100, false);
-			
+			$page = Administration::instance()->Page;
+			$callback = Administration::instance()->getPageCallback();
+
+			// Include filter?
+			if ($page instanceOf contentPublish && $callback['context']['classname'] != 'contentExtensionDashboardIndex') {
+				// Add the custom code to the head of the page
+				Administration::instance()->Page->addStylesheetToHead(URL . '/extensions/backend_css/assets/custom.css', 'screen', 9001);
+			}
 		}
 		
 		public function appendCodeBox($context){
 		
-			if(isset($_POST['action']['custom_js_save'])){
+			if(isset($_POST['action']['custom_css_save'])){
 				# Path to our file
-				$custom_file = getcwd() . '/extensions/backend_javascriptr/assets/custom.js';
+				$custom_file = getcwd() . '/extensions/backend_css/assets/custom.css';
 				# Open the file and reset it, to recieve the new code
 				$open_file = fopen($custom_file, 'w');
 				# Write it, then close
-				fwrite($open_file, $_POST['custom_backend_js']);
+				fwrite($open_file, $_POST['custom_backend_css']);
 				fclose($open_file);
 				
 			}
 
 			$group = new XMLElement('fieldset');
 			$group->setAttribute('class', 'settings');
-			$group->appendChild(new XMLElement('legend', __('Backend JavaScriptr')));
+			$group->appendChild(new XMLElement('legend', __('Backend css')));
 
 
 			$div = new XMLElement('div', NULL, array('class' => 'label'));
 			$span = new XMLElement('span', NULL, array('class' => 'frame'));
 
-			$span->appendChild(new XMLElement('button', __('Save'), array('name' => 'action[custom_js_save]', 'type' => 'submit')));
+			$span->appendChild(new XMLElement('button', __('Save'), array('name' => 'action[custom_css_save]', 'type' => 'submit')));
 			
 			$label = Widget::Label(__('Your JavaScript goes here:'));
 			
 			# Retrieve the stored code to put it inside the textarea
-			$custom_js_content = file_get_contents(getcwd() . '/extensions/backend_javascriptr/assets/custom.js');
+			$custom_css_content = file_get_contents(getcwd() . '/extensions/backend_css/assets/custom.css');
 
-			$label->appendChild(Widget::Textarea('custom_backend_js', 10, 50, $custom_js_content, array('id' => 'backend_javascriptr_field') ));
+			$label->appendChild(Widget::Textarea('custom_backend_css', 10, 50, $custom_css_content, array('id' => 'backend_css_field') ));
 			
 			$div->appendChild($label);
 			$div->appendChild($span);
 
-			$div->appendChild(new XMLElement('p', __('Remember: The "extensions/backend_javascriptr/assets/custom.js" has to have all permissions ( chmod 777 ).'), array('class' => 'help')));
+			$div->appendChild(new XMLElement('p', __('Remember: The "extensions/backend_css/assets/custom.css" has to have all permissions ( chmod 777 ).'), array('class' => 'help')));
 
 			$group->appendChild($div);
 			$context['wrapper']->appendChild($group);

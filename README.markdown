@@ -1,17 +1,16 @@
-#Backend JavaScriptr
+#Backend CSS
 
 ---------------------------------------
 
-This is an Symphony CMS extension that allows you to use custom JavaScript instructions in the CMS's backend.
+This is an Symphony CMS extension that allows you to use custom CSS in the CMS's backend.
 
 ---------------------------------------
 
 ## Info
 - Version:	0.1
 - Date:		2011-04-18
-- Author:	João Barbosa
-- E-mail:	<joao.ofb@gmail.com>
-- Website:	<http://www.joaootavio.com.br>
+- Author:	Phill Gray
+- E-mail:	<pixel.ninjad@gmail.com>
 
 ---------------------------------------
 
@@ -19,7 +18,6 @@ This is an Symphony CMS extension that allows you to use custom JavaScript instr
 
 - Download the extension
 - Unzip the file inside your Symphony extensions path
-- Rename the folder to 'backend\_javascriptr'
 - Enable the extension in the Symphony's control panel
 
 
@@ -28,14 +26,14 @@ This is an Symphony CMS extension that allows you to use custom JavaScript instr
 ## Usage
 
 - Go to System > Preferences, in your Symphony's backend
-- Find the "Backend JavaScriptr" section, type your code inside the textarea
+- Find the "Backend CSS" section, type your code inside the textarea
 - Click "Save", and be happy!
 
 ---------------------------------------
 
 ## Notes
 
-- The file "/backend_javascriptr/assets/custom.js" has to have all permissions ( chmod 777 )!
+- The file "/backend_css/assets/custom.css" has to have all permissions ( chmod 777 )!
 
 ---------------------------------------
 
